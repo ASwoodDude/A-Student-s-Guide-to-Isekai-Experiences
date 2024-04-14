@@ -1,32 +1,82 @@
-﻿# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
 
+
+# Characters
+# Sorta in order of appearance
+
+# Melody (MC)
 define m = Character("Melody", image="mc")
+
+default affection = [0,0,0,0,0,0,0,0,0,0]
+$ player_name = ""
+
+# unknown standin
+define u = Character("???")
+
+# Fairy
+define f = Character("Fairy",image="fairy")
+
+# Tarran
+define t = Character("Tarran",image="tarran")
+
+# Kylie
+define k = Character("Kylie",image="kylie")
+
+# Noah
+define n = Character("Noah",image="noah")
+
+# Leslie
+define le = Character("Leslie",image="leslie")
+
+# Lorenzo
+define lo = Character("Lorenzo",image="lorenzo")
+
+
 
 # Music
 define audio.ordinary_day = "audio/Music/reflected-light USE FOR ORDINARY DAY.mp3"
-define audio.mc_waltz = "" # TODO
+define audio.library_ambient = "audo/Music/ambient-classical USE FOR LIBRARY.mp3"
+define audio.home_menu = "audio/Music/home menu twinkle.mp3"
+define audio.fantastical_day = "audio/Music/acoustic-guitars.mp3"
+
+define audio.mc_theme = "audio/Music/ProtagonistTheme.mp3"
+define audio.lorenzo_theme = "audio/Music/Lorenzo Theme.mp3"
+define audio.tarran_theme = "audio/Music/Tarran's Lullaby.mp3"
+#define audio.leslie_theme = "audio/Music/"
+#define audio.kylie_theme = "audio/Music/"
+
 
 # Sounds
 define audio.footsteps = "Sound Effects/footsteps-all.mp3"
 define audio.clicking = "Sound Effects/mouse-click-153941.mp3"
 define audio.sheep_short = "Sound Effects/single sheep bleat.mp3"
+define audio.sheep_long = "Sound Effects/Sheep long for loop.mp3"
 define audio.explosion = "Sound Effects/explosion-6801.mp3"
+define audio.birds = "Sound Effects/Bird chirp long for loop.mp3"
+define audio.sparkle = "Sound Effects/fairy twinkle.mp3"
+define audio.crash = "Sound Effects/box-crash.mp3"
+#define audio.pages = ""
+
 
 # Placeholders
 image bgp = "images/Placeholder Assets/Background Placeholder.jpg"
 image cgp = "images/Placeholder Assets/CG Placeholder.jpg"
 
-#locations
-    
+# images
+image fairy sprite = "images/Sprites/fairy sprite.png"
+image leslie sprite = "images/Sprites/leslie sprite.png"
+image kylie sprite = "images/Sprites/kylie sprite.png"
+image lorenzo sprite = "images/Sprites/lorenzo sprite.png"
+image noah sprite = "images/Sprites/noah sprite.png"
+
+# Transitions
+define flash = Fade(0.5, 0, 0.5, color="#FFFFFF")
+
+#transform
 
 # The game starts here.
 
 label start:
-
-
     # TODO
     scene bgp
 
@@ -76,11 +126,8 @@ label start:
     
     m "I squint, leaning in close to the screen to get a better look at what appears to be a storybook icon. There is no name or description under the small image, just a book with a red cover and gold pages."
     
-    # TODO slashes
-    # m /"What the heck is that…?"/ "I mutter under my breath."
+    m "\"What the heck is that…?\" I mutter under my breath."
     
-    m "What the heck is that…?"
-
     m "I mutter under my breath."
 
     m "I have plenty of time, I think."
@@ -112,8 +159,7 @@ label start:
     label choice1_yes:
 
         # TODO
-        # play music m_waltz
-        play music ordinary_day
+        play music mc_theme
 
         m "Well… I’m curious. It won’t take long. I’ll just take fifteen minutes and see what this is about, and then I’ll get back to my morning research."
 
@@ -124,7 +170,11 @@ label start:
 
             name = name.strip()
 
-        "WELCOME, \[PLAYER NAME\]"
+            player_name = name
+
+        #"WELCOME, \[PLAYER NAME\]"
+
+        "WELCOME, [player_name]"
 
         m "Wow, not great programming there, but okay. Fine."
 
@@ -145,10 +195,7 @@ label start:
         # There's a saturation thing I saw
         # https://lemmasoft.renai.us/forums/viewtopic.php?t=8243
 
-        # TODO 
-        # Forward Slash
-        # m /"What’s— What’s happening?"/
-        m "What’s— What’s happening?"
+        m "\"What’s— What’s happening?\""
 
         m "I close my eyes against the sudden bright flash, so bright it seems like it couldn’t possibly be coming from an ordinary computer screen, but it does no good. The bright white light burns through my eyelids and I scream in shock and pain, body crumpling as I curl away from the blast."
 
@@ -166,15 +213,19 @@ label start:
 
         m "I'd rather not."
 
-        m "Guess we'll just sit here."
+        # Fade to white
 
-        jump choice1_done
+        jump chapter_1_ending
+
+        # ... the game continues here.
+        # Miranda said it should jump to one of the bad endings, need confirmation
 
     label choice1_done:
 
-        # ... the game continues here.
- 
+  
+        
 
+        stop music
         jump chapter2
 
         # ... the game continues here.
