@@ -1,0 +1,34 @@
+
+m "I hate to say it, but she’s right."
+m As sift through the various objects around the archive, some of them feel perfectly normal, but I can’t help but notice that some 
+of" them sound… strange."
+m And not just strange, but like they’re playing music from nowhere in particular. It changes with a few items. Some of them, I notice, don’t have any particular shift in sound. I go through a whole pile of miscellaneous library books, and I can hear the same 
+so"rt of odd little ambient tune if I concentrate."
+m Some of them, though, change sounds entirely. A box with a medal in it plays a proud fanfare in my ears when I open it, and I 
+qu"ickly snap it shut. A silver pocket watch plays a light and tinkling tune. A diary plays a melancholy melody on strings."
+
+m "\"Where is that sound coming from?\""
+
+f "\"Hmm? What?\""
+
+m "\"You don’t hear the music?\""
+
+f "\"Oh! I guess I’m just used to it by now.\""
+
+m "\"Does everyone in fantasy land hear background music all the time?\""
+
+f "\"No, no, no. It’s just you. Special player privileges.\""
+
+m "\"So I’m… the only one who can hear this?\""
+
+m "I briefly wonder how this complicates the definition of diegetic and non-diegetic music. After all, I’m the player and I can hear it… but I’m also a character in the game, and other characters can’t hear it."
+m It strikes me that the music and sound that I can hear as the player might give me a certain advantage. Curious, I reach for the nearest item that made the music change: the pocket watch."
+
+#Overlay: pocket watch close up image
+#Music: Tarran’s Lullaby
+ 
+m "I realize that all the objects I have picked up are likely personal items. The normal books and papers that are for general use don’t influence the music, but ones that appear to belong to someone specific do."
+
+m "I wonder if the objects carry the imprint of the person who owns them, and the music is an indicator.""
+
+f "Say… do you think we’ve heard this music before?"
