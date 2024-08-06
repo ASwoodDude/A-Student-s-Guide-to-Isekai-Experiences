@@ -23,7 +23,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = ".8"
+define config.version = "1.0"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -63,6 +63,7 @@ define config.has_voice = True
 ## game, until it is stopped or another file is played.
 
 #define config.main_menu_music = "audio/Music/home menu twinkle.mp3"
+define config.main_menu_music = "audio/Music/pasture music medieval abbey.mp3"
 
 
 ## Transitions #################################################################

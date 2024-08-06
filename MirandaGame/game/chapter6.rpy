@@ -8,13 +8,9 @@ label chapter6:
     $ renpy.pause()
 
     scene bg flipped hallway
-    show fairy sprite:
-        xalign  1
-        yalign  .6
-    show kylie sprite at center
-    # ASK
-    # Same as End of Chapter 5
-    # What BG here?
+    show fairy sprite at fairycenterright
+
+    show kylie sprite at centerleft
 
     m "I can’t tell if the fantasy profanity censors are working over the din of the rumbling, shaking, and falling stone, but I’m sure I sound exactly like a screaming chicken if they are."
     
@@ -51,10 +47,9 @@ label chapter6:
     m "\"But—\"" 
     
     k "\"GO, NOW!\"" 
-    
-    
-
       
+
+label affectionpivot:
 
     python:
 
@@ -62,6 +57,8 @@ label chapter6:
 
         for x in affection:
             total = total + x
+
+
 
         if total >= 8:
             renpy.jump('good_ending')
@@ -170,6 +167,8 @@ label chapter6:
         f "\"Okay, fair point! EEK!\" She screams as she dodges a piece of falling debris."
         
         m "I skid to a stop in front of the library doors, making my way past the messiness of the main stacks and towards the archive. Everything helpful that I’ve found so far has come from there. Maybe there’s a way out there, too."
+
+        scene bg castlelib
         
         m "The only problem is that I don’t know what I’m looking for. At all. There are too many books and documents and not enough time. I squeeze my eyes shut in frustration—"
         
@@ -194,6 +193,8 @@ label chapter6:
         m "It’s me."
         
         m "The inside of the book shows a chapter index— \"Our Journey Begins\", \"In the Land of Sheep\", and on through \"The Way the Castle Crumbles\" which I can only assume is what is happening this very minute. I even see an illustration of myself in the cart on the first page."
+
+        scene cg storybook
         
         m "This is MY story. It’s my tune, my music playing in my ears, it’s the sound that encompasses my personality and my confusion and the resolution to my troubles all in one."
         
@@ -211,15 +212,10 @@ label chapter6:
         
         m "It’s not a quill, it’s an actual ink pen, though it’s a fountain pen in an older style. I pick it up almost dazedly, reflexively, and that’s when something dawns on me."
         
-        # TODO
-      #Sprite: fairy
-
-        show fairy sprite at center
+        show fairy sprite at fairycenter
         
         f "\"Maybe it’s not about winning, maybe it’s about getting to the ending.\"" 
         
-        # TODO
-      #Fade away fairy sprite
         hide fairy sprite
         
         m "That’s it. That’s the solution I’ve been looking for this whole time. The Fairy knew what I was supposed to be doing after all."
@@ -231,22 +227,12 @@ label chapter6:
         "The story completed, she was released and returned home."
         
         "THE END."
-        
-        # TODO
-      #Background: whiteout
 
-        scene bgp
+        scene white with flash
         
         m "As I place the final period, the world goes white."
         
         m "I am entirely blinded for a moment, but then the world seems to spin, and spin, and spin even in the blinding white nothingness, and suddenly—"
-        
-        # TODO
-      #Background: library computer
-        scene bgp
-        
-        # TODO
-      #Music: ordinary day theme
 
     label chapter_1_ending:
 
@@ -272,7 +258,6 @@ label chapter6:
         
         # TODO
       #Background: fade to THE END
-
         jump the_end
         
     label good_ending:
@@ -289,6 +274,9 @@ label chapter6:
         m "Then she nods quickly and shakes free of my grip."
         
         k "\"We don’t have much time. I’ll be back as soon as I can.\"" 
+
+        hide kylie sprite
+        show fairy at fairycenter
         
         m "I scramble down the hallway, skidding around corners as fast as possible as I sprint towards the library. I only have a very, very vague thought in my head, and I’m not sure it’s going to work, but I think it’s worth a shot."
         
@@ -303,15 +291,16 @@ label chapter6:
         f "\"That’s one heck of a hunch…\"" 
         
         m "\"It’s the only one I’ve got at the moment. Let’s go!\"" 
-        
+
+        show bg castlelib
+
         m "Lungs burning, I finally slide through the doors to the library and pick my way around cluttered boxes, fallen and scattered in the earthquake, to get to the archive room."
+
         
         m "The only problem is that I don’t know what I’m looking for. At all. There are too many books and documents and not enough time. I squeeze my eyes shut in frustration—"
         
         m "And that’s when I hear it."
-        
-        # TODO
-      #Music: protagonist’s waltz
+
         play music mc_theme
         
         m "It takes me a moment to identify it."
@@ -334,10 +323,7 @@ label chapter6:
         
         m "I don’t have time to flip any further before I hear voices at the door."
         
-        # TODO
-      #Music: castle day
-
-        play music castle_day
+        play music castle_theme
         
         k "\"HELLO? ARE YOU DEAD?\"" 
         
@@ -349,10 +335,13 @@ label chapter6:
         
         m "Four familiar faces come tumbling through the door to the archive shortly after my shout. Kylie, Noah, Tarran, and Leslie all stare at me with wide eyes, their gaze going from me to the book open on the table in front of me and back again."
         
-        # TODO
-      #Sprites: tarran, Leslie, noah, kylie
+        hide fairy sprite
 
-      # GOTTA FIGURE THIS ONE OUT
+        show tarran sprite at pos1
+        show leslie sprite at pos2
+        show noah sprite at pos3
+        show kylie sprite at pos4
+
         
         t "\"We caught Lorenzo trying to crawl out of the grave on the way here,\" he says darkly."
         
@@ -360,9 +349,9 @@ label chapter6:
         
         m "\"So he’s…?\" I trail off. Did they kill him? I know our lives are at stake, but that still seems a little shocking."
         
-        l "\"Hog tied in the hallway. Tarran’s being dramatic.\" She rolls her eyes."
+        le "\"Hog tied in the hallway. Tarran’s being dramatic.\" She rolls her eyes."
         
-        l "\"As much as we want him to get what’s coming to him, Kylie thinks killing him will only make the whole place collapse even faster.\"" 
+        le "\"As much as we want him to get what’s coming to him, Kylie thinks killing him will only make the whole place collapse even faster.\"" 
         
         k "\"Considering he’s probably somehow tied to the magic keeping us all here, I think it’s better to run than anything.\" She pauses, taking a look at the book on the table. \" What’s that?\"" 
         
@@ -376,7 +365,7 @@ label chapter6:
         
         t "\"I agree. Get us out of here.\"" 
         
-        l "\"It’s time.\"" 
+        le "\"It’s time.\"" 
         
         m "I look between them slowly. \"You’re… sure? I’m not even certain this is going to work.\"" 
         
@@ -401,11 +390,11 @@ label chapter6:
         
         m "It’s not a quill, it’s an actual ink pen, though it’s a fountain pen in an older style. I pick it up almost dazedly, reflexively, and that’s when something dawns on me."
         
-        show fairy sprite at center
+        show fairy sprite at fairycenter
         
         f "\"Maybe it’s not about winning, maybe it’s about getting to the ending.\"" 
         
-        hide fairy sprite with fade
+        hide fairy sprite 
         
         m "That’s it. That’s the solution I’ve been looking for this whole time. The Fairy knew what I needed to do after all."
         
@@ -415,14 +404,9 @@ label chapter6:
         
         m "In the midst of my panic, I feel a warm hand on mine, supporting the hand holding the pen."
         
-        show leslie sprite at center
-        
-        l "\"You told me you’re a writer. You love stories.\"" 
+        le "\"You told me you’re a writer. You love stories.\"" 
         
         m "\"I— I do,\" I stutter, a tear falling down my cheek and onto the blank page."
-        
-
-        show noah sprite at right
         
         n "\"Write our story, then. Give us the ending you want.\"" 
         
@@ -444,21 +428,31 @@ label chapter6:
         
         m "Though my hand shakes, I put my pen to paper."
         
+        scene cg storybook
+
         "As Lorenzo dies, the world begins to collapse, the magic fading away with his life."
         
-        "However, a few brave heroes found the source of the magic hidden away in the library. All the books, all the memories, all the love and passion of generations past preserved in one room to pass on over and over again— all of it combined into a little pocket of true magic, untouched by Lorenzo, preserved by the story world itself."
+        "However, a few brave heroes found the source of the magic hidden away in the library."
+
+        "All the books, all the memories, all the love and passion of generations past preserved in one room to pass on over and over again— all of it combined into a little pocket of true magic, untouched by Lorenzo, preserved by the story world itself."
         
         "There is magic in that kind of space. There is magic in memory, in recording stories, in using things we learn to shape our world for the better, and that magic persists in stories of all kinds. It is in books. It is in games. It is in songs."
         
-        "As the castle shook, the books began to disappear. One by one, they vanish in a shower of sparks, and as each book vanishes, one person at a time returns to their world. They return to their lives and their loved ones, their memories restored from the very volumes that sent them home."
+        "As the castle shook, the books began to disappear."
+        
+        "One by one, they vanish in a shower of sparks, and as each book vanishes, one person at a time returns to their world. They return to their lives and their loved ones, their memories restored from the very volumes that sent them home."
         
         "And, in the end, when all but this very book have disappeared, the librarian herself puts down her pen. The book in front of her disappears, and she goes back to the library to resume her own life."
         
         "THE END."
         
+        scene black with fade
+
         m "I don’t quite understand what happens after I put the pen down."
         
         m "Everything seems to go blurry, then completely black, and for a moment I feel as if I am floating on an endless ocean of nothingness."
+
+        scene bg computer
         
         m "And then someone pokes my shoulder."
         
@@ -466,8 +460,10 @@ label chapter6:
         
         m "I groggily open my eyes, realizing there’s a hard surface under me."
         
-        m "I am sitting in front of a computer at the university library. A string of random letters followed by a long stream of constant T’s cover the page of my open word processing document, and I touch my face only to realize that there is most certainly an imprint of square keys on my cheek."
-        
+        m "I am sitting in front of a computer at the university library."
+
+        m "A string of random letters followed by a long stream of constant T’s cover the page of my open word processing document, and I touch my face only to realize that there is most certainly an imprint of square keys on my cheek."
+
         u "\"Ma’am??\"" 
         
         m "\"Oh! I’m, um. I’m good. Sorry.\" I sheepishly wave off the librarian, too shocked to blush and too disoriented to say much more."
@@ -476,9 +472,15 @@ label chapter6:
         
         m "I would say it was a dream, but the memories are vivid and detailed, fully present images rather than vague notions of memories and pieces that don’t quite fit together."
         
-        m "What happened to everyone else? I can’t let the thought go as I pack my belongings, feeling numb and floaty and utterly disconnected from the world around me. I wonder if they were able to get out, to return to where they were. Or… maybe not. Maybe they were trapped."
+        m "What happened to everyone else? I can’t let the thought go as I pack my belongings, feeling numb and floaty and utterly disconnected from the world around me."
+
+        m "I wonder if they were able to get out, to return to where they were. Or… maybe not."
+
+        m "Maybe they were trapped."
         
-        m "I sling my backpack over my shoulder and bite my lip. It’s also very possible that I am simply crazy, or I just fell asleep on an early morning and had a nightmare that shook me too the core. I decide to grab some tea at the library café on the way home, reorient myself, and hopefully feel less like I’ve lost my mind by the time I reach my apartment."
+        m "I sling my backpack over my shoulder and bite my lip. It’s also very possible that I am simply crazy, or I just fell asleep on an early morning and had a nightmare that shook me too the core."
+
+        m" I decide to grab some tea at the library café on the way home, reorient myself, and hopefully feel less like I’ve lost my mind by the time I reach my apartment."
         
         m "I’m too lost in my thoughts to really pay attention to where I’m going, and as I turn down one of the rows of bookshelves, I collide head on with another figure."
         
@@ -491,18 +493,15 @@ label chapter6:
 
         play music noah_theme
         
-        m "His long brown hair is so dark that it’s almost black. There is a naturally golden-blonde streak on one side, the light color peeking and out of a braid thrown over his shoulder. He wears half-moon glasses this time instead of a circlet and a normal vest instead of a brocade doublet, but the green eyes are the same."
+        m "His long brown hair is so dark that it’s almost black. There is a naturally golden-blonde streak on one side, the light color peeking and out of a braid thrown over his shoulder."
+
+        m "He wears half-moon glasses this time instead of a circlet and a normal vest instead of a brocade doublet, but the green eyes are the same."
         
         m "\"… Noah?\"" 
         
-        n "\"… [player_name]?\"" 
-        
-        # TODO
-        # ASK
-        # Background: library
-        scene bgp
+        show noah modern at centerleft
 
-        show noah modern
+        n "\"… [player_name]?\"" 
         
         m "I can’t help it. I rush forward and hug him, probably too tightly to be socially acceptable."
         
@@ -511,6 +510,10 @@ label chapter6:
         n "\"Would you… would you like to have coff— tea! Would you like to have tea with me?\"" 
         
         m "\"Yeah. Yeah, I would,\" I manage to choke out, finally releasing him from the hug."
+
+        scene bg coffeeshop
+        
+        show noah modern at centerright
         
         m "We make our way down to the library’s café on the first floor and order drinks like nothing is out of the ordinary. I’m still in a daze, if I’m honest, but I don’t know how to shake myself out of it."
         
@@ -534,7 +537,9 @@ label chapter6:
         
         n "\"Not a professor, either. I haven’t quite finished my terminal degree.\" At this, the grin fades a little. \" And… if I’m honest, this whole experience hasn’t exactly helped with that. I was trapped for a year, so coming back feels like… stretching out a phantom limb.\"" 
         
-        m "I nod slowly. It feels weird for me, too, and I was only gone for a few days. I can’t imagine how he feels, and it makes my heart break even more for Kylie. I wish I knew where she was so I could check on her, but… Lorenzo said she was one of the ‘early ones’ back in the castle hallway. I highly doubt she’d been sent back to modern times like Noah and I."
+        m "I nod slowly. It feels weird for me, too, and I was only gone for a few days. I can’t imagine how he feels, and it makes my heart break even more for Kylie."
+
+        m "I wish I knew where she was so I could check on her, but… Lorenzo said she was one of the ‘early ones’ back in the castle hallway. I highly doubt she’d been sent back to modern times like Noah and I."
         
         n "\"Do you have any idea how insane I felt?\" he says softly, but then shakes his head. \" Of course you do. You’re living it.\"" 
         
@@ -542,13 +547,17 @@ label chapter6:
         
         m "That wrings a soft laugh out of Noah and he shakes his head, taking a long sip of his drink before he speaks again."
         
-        n "\"Someone once told me that your identity has to amount to more than someone who does something, though. That just a part of you can’t define the whole. It’s helped with the adjustment a lot, just as I work back up to the way I was before all that.\"" 
+        n "\"Someone once told me that your identity has to amount to more than someone who does something, though. That just a part of you can’t define the whole.\""
+
+        n  "\"It’s helped with the adjustment a lot, just as I work back up to the way I was before all that.\"" 
         
         m "I smile, feeling my cheeks turn red, but I’m not sure how to respond."
         
         n "\"Do you ever wonder how many more there might have been in there? Just… trapped?\"" 
         
-        m "The thought sends chills down my spine in the worst possible way. I don’t even want to imagine how many people Lorenzo took captive over the centuries he was hiding. It can’t have been just the ones I met, not if he was feeding on memories to stay alive for so long."
+        m "The thought sends chills down my spine in the worst possible way. I don’t even want to imagine how many people Lorenzo took captive over the centuries he was hiding."
+
+        m "It can’t have been just the ones I met, not if he was feeding on memories to stay alive for so long."
         
         m "\"Do you think they all… went back? Like we did?\"" 
         
@@ -556,14 +565,7 @@ label chapter6:
         
         n "\"That… and I managed to find this.\" He passes his phone over to me, the image of a painting on the screen. \" It’s from the late nineteenth century, but I think we’re well aware of who it was that painted it.\"" 
         
-        # TODO
-        #Background: painted portrait on phone CG
-
-        #scene CG
-        #with Dissolve(2.0)
-        #$ renpy.pause()
-
-        scene bgp
+        scene cg painting
         
         m "I gasp as I look at the portrait of five people."
         
@@ -585,8 +587,7 @@ label chapter6:
         
         scene bg coffeeshop
         
-
-        show noah modern
+        show noah modern at centerright
         
         n "\"I would very much appreciate that,\" he says softly. \" It’s been… a long road to get here.\"" 
         

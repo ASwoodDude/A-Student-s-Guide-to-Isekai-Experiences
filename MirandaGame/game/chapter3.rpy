@@ -9,7 +9,7 @@ label chapter3:
     $ renpy.pause()
 
     #fade to library background
-    scene bgp with fade
+    scene bg castlelib with fade
     play music mc_theme
     
     m "I would say I’m done for the day. After all, I did spend this morning acclimating to an entirely different world, among plenty of other chores this afternoon…"
@@ -19,13 +19,8 @@ label chapter3:
     m "Even more unfortunately, when we make it back to the library, the lighting is absolutely terrible."
     
     m "The entire room is a swath of lumpy shadows and vague objects, the soft glow of the lamps doing very little to truly help me distinguish anything among the papers and boxes, and even my fairy friend sighs in distaste as we enter."
-    
-    # TODO
-    #Sprite: fairy
 
-    show fairy sprite:
-        xalign  .5
-        yalign  .6
+    show fairy sprite at fairycenter
     
     f "\"You should really turn in for the night, you know? There’s only so much you can do in one day.\""
     
@@ -49,11 +44,6 @@ label chapter3:
     
     m "I grab the roll and bring it closer, the music that guides me growing a little louder as I bring it closer to my face, squinting through the shadows at the object. There is a leather cord tied around the roll, and I carefully undo it to see what is inside."
     
-
-    # ASK
-    #Image overlay: paintbrushes
-    # ???
-    
     m "It’s a tool roll, and it’s completely filled with paint tubes and paintbrushes. Looks like it belonged to some sort of artist, but I haven’t met anyone who has identified themselves as an artist since I arrived here."
 
     
@@ -72,7 +62,7 @@ label chapter3:
             
             # TODO
             #Background: pasture
-            scene bgp
+            scene bg pasture
             
             # TODO
             #Music: Noah theme
@@ -86,6 +76,8 @@ label chapter3:
             
             # TODO
             #>> LOOP BACK TO CHOICE PROMPT & RESET VISUALS
+            scene bg castlelib with fade
+            show fairy sprite at fairycenter
             jump loopback
 
         label choice3_no:
@@ -97,6 +89,8 @@ label chapter3:
             
             f "\"This one might require you to think a little farther back,\" she says slowly. \"I know you know the answer.\""
     
+            scene bg castlelib with fade
+            show fairy sprite at fairycenter
             jump loopback
 
 
@@ -123,16 +117,9 @@ label chapter3:
     
     scene bg castle hallway
     
-    # TODO
-    #sprite: fairy
-    show fairy sprite:
-        xalign  .5
-        yalign  .6
+    show fairy sprite at fairycenter
+
     
-    # ASK
-    # What is this?
-    #music: fantasy Ambient
-    # 
     #play music peaceful_exploration
     
     m "\"So… if you can tell where anyone is at any time, can you find the bird mask man for me?\" He might have answers that I desperately need, and he’s the only one so far who seems to understand my situation… even if he was pretty cryptic about it."
@@ -177,9 +164,11 @@ label chapter3:
     menu:
         "ask about the case":
             # +2 Affection
+            $ affection[2] = 2
             jump ask
         "don’t ask":
             # -2 Affection
+            $ affection[2] = -2
             jump dont_ask
     
 
@@ -249,12 +238,14 @@ label chapter3:
         menu:
             "try and think of an experience":
                 # +1 affection
+                $ affection[3] = 1
                 jump think_of_experience
             "say you can’t remember":
                 # no affection change
                 jump leslie_skip
             "say you’ve never felt that":
                 # -1 Affection
+                $ affection[3] = -1
                 jump leslie_skip
 
 
@@ -329,7 +320,7 @@ label chapter3:
             # TODO
             # ASK
             #Background: kitchens
-            scene bgp
+            scene bg kitchen
             
             m "It’s a cozier space than I thought it would be, if I’m honest. I’ve never been in a kitchen that wasn’t completely modern before, and this is something entirely unfamiliar to me."
 
@@ -339,34 +330,31 @@ label chapter3:
             
             m "Instinct takes over and I flinch in surprise, turning towards the source of the movement. Leslie, however, barely reacts at all."
             
+            show leslie sprite at kitcenterright
+
             le "\"Hey. Come out of there. I see you, princess.\""
             
             # TODO
-            #play music kylie_theme
+            play music kylie_theme
             
             m "A face appears around the corner, a jam stain at the corner of her mouth and a half-eaten tart in her hands."
             
-            show leslie sprite at right
 
             u "\"Hi…\" she mutters, mouth half full of pastry."
+
+            show kylie sprite at kitcenterleft
             
             le "\"That is no way for a princess to introduce herself.\""
             
-            m "The girl sighs, her shoulders heaving exaggeratedly, and takes a large swallow, wiping the jam stain from her mouth with the back of her sleeve. Her mouth turns down in a pinched, displeased expression as she picks up the side of her skirt with sticky fingers and curtseys to me."
+            m "The girl sighs, her shoulders heaving exaggeratedly, and takes a large swallow, wiping the jam stain from her mouth with the back of her sleeve." 
+
+            m "Her mouth turns down in a pinched, displeased expression as she picks up the side of her skirt with sticky fingers and curtseys to me."
             
+
+
             k "\"How do you do,\" she deadpans. \"I am princess Kylie.\""
             
             m "\"Pleasure to meet you,\" I say hesitantly, bobbing a wobbly curtsey. Leslie sighs, but Kylie laughs loudly, the cheerful sound echoing around the dim kitchen."
-            
-            # TODO
-            # ASK
-            #Background: kitchens
-            
-            # TODO
-            #Sprite: Kylie, Leslie
-
-            show kylie sprite at center
-            
             
             k "You look about as comfortable with that as I feel,\" she says with a broad smile. \"Are you new?\""
             
@@ -470,5 +458,6 @@ label chapter3:
             scene black with fade
 
             stop sound
+            stop music
 
             jump chapter4

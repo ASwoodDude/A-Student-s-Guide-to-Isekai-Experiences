@@ -4,11 +4,11 @@
 # Characters
 # Sorta in order of appearance
 
-# Melody (MC)
-define m = Character("Melody", image="mc")
-
 default affection = [0,0,0,0,0,0,0,0,0,0]
-$ player_name = ""
+default player_name = ""
+
+# Melody (MC)
+define m = Character("Melody", image="mc",color="#F17AA2")
 
 # unknown standin
 define u = Character("???")
@@ -17,19 +17,19 @@ define u = Character("???")
 define f = Character("Fairy",image="fairy")
 
 # Tarran
-define t = Character("Tarran",image="tarran")
+define t = Character("Tarran",image="tarran",color="#FFF176")
 
 # Kylie
-define k = Character("Kylie",image="kylie")
+define k = Character("Kylie",image="kylie",color="#F28B20")
 
 # Noah
-define n = Character("Noah",image="noah")
+define n = Character("Noah",image="noah",color ="#5D96C4")
 
 # Leslie
-define le = Character("Leslie",image="leslie")
+define le = Character("Leslie",image="leslie",color="#63B367")
 
 # Lorenzo
-define lo = Character("Lorenzo",image="lorenzo")
+define lo = Character("Lorenzo",image="lorenzo",color="#BD70CA")
 
 
 
@@ -83,20 +83,78 @@ image noah modern = Image("images/Sprites/noah modern.png",oversample=4)
 # CGs
 image cg painting = Image("images/CGs/lesliespainting.jpg")
 image cg storybook = Image("images/CGs/storybook.jpg")
+image cg unmasked = Image("images/CGs/lorenzo unmasked.jpg")
 
 image white = "#ffffff"
+image red = "#ff0000"
 
 # Transitions
 define flash = Fade(0.5, 0, 0.5, color="#FFFFFF")
+define blood = Fade(0.5, 0, 0.5, color="#FF0000")
 
 #transform
+
+# Fairy Positions
+transform fairycenter:
+    xalign .5
+    yalign .6
+
+transform fairycenterleft:
+    xalign .35
+    yalign .6
+
+transform fairycenterright:
+    xalign .65
+    yalign .6
+
+# kitchen positions
+
+transform kitcenterleft:
+    xalign .25
+    yalign 1.3
+    zoom 1
+
+transform kitcenterright:
+    xalign .55
+    yalign 1.3
+    zoom 1
+
+# General Positions
+
+transform center:
+    xalign .5
+    yalign 1.3
+
+transform centerright:
+    xalign .65
+    yalign 1.3
+
+transform centerleft:
+    xalign .35
+    yalign 1.3
+
+# Chapter 6, 4 person lineup
+
+transform pos1:
+    xalign .20
+    yalign 1.3    
+
+transform pos2:
+    xalign .40
+    yalign 1.3
+
+transform pos3:
+    xalign .60
+    yalign 1.3
+
+transform pos4:
+    xalign .80
+    yalign 1.3
 
 # The game starts here.
 
 label start:
 
-    jump chapter2
-    
     scene title cp1 with fade
 
     $ renpy.pause()
@@ -121,7 +179,7 @@ label start:
 
     m "Heaving a sigh, I slide the laptop back into my bag and decide that instead of going all the way home and risking a parking dilemma when I return, I’ll work on one of the library computers for the day and save my research to the cloud for later."
 
-    scene bg computer 
+    scene bg computer
 
     m "The library recently acquired new computers, finally upgrading from the old, 3:4 ratio clunky monitors with curved glass screens they’d had for twenty years."
 
@@ -213,6 +271,9 @@ label start:
         # Fade to white
         scene white with flash
 
+        stop sound
+        stop music
+
         jump chapter_1_ending
 
         # ... the game continues here.
@@ -221,6 +282,8 @@ label start:
     label choice1_done:
 
         stop music
+        stop sound
+
         jump chapter2
 
         # ... the game continues here.

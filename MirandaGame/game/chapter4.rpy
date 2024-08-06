@@ -11,7 +11,7 @@ label chapter4:
     # TODO
     # ASK
     #fade to library 1 background
-    scene bgp
+    scene bg castlelib
     
     play music fantastical_day
     
@@ -29,10 +29,8 @@ label chapter4:
     
     u "\"Hello? Anyone in— ah, I didn’t see you!\""
     
-    
     show noah sprite at center
 
-    
     play music noah_theme
     
     m "I wave from my position on the floor, mouth full of cheese, as I motion Noah over."
@@ -93,13 +91,20 @@ label chapter4:
 
     menu:
         "I am sure you can be a wonderful healer and a king":
+
             # +2 affection
+            $ affection[4] = 2
             jump healer_and_king
+
         "It’s good to have hobbies":
+
             # no change
             jump hobbies
+
         "I think you should focus on ruling":
+
             # -2 affection
+            $ affection[4] = -2
             jump ruling
 
     
@@ -138,7 +143,6 @@ label chapter4:
         m "I just hope that Noah is able to find a path that works for him, that makes him happy, however he has to do it."
 
         jump choice4_1_end
-        
 
     
     label ruling: 
@@ -167,10 +171,17 @@ label chapter4:
 
         menu: 
             "I’d love to look around":
+
+                $ affection[5] = 1
                 jump love_to_look
+
             "Um… sure?":
+
                 jump um_sure
+
             "I really have work I need to do":
+
+                $ affection[5] = -1
                 jump work_to_do
             
 
@@ -182,10 +193,7 @@ label chapter4:
             n "\"Oh, it’s no problem,\" he says, but he seems a little disappointed. \"I’ll find you later, then?\""
             
             m "\"Sure.\""
-            
-            # TODO
-            # ASK
-            # ask about hide vs fade
+
             hide noah sprite
             
             m "And I go back to my books."
@@ -196,16 +204,14 @@ label chapter4:
             
             m "… But I want to go home."
 
-
             jump chapter4_redirect
 
     
-        label um_sure:    
+        label um_sure:
+
             m "My response is hesitant, but Noah smiles."
             
             n "\"It’ll be fun, I promise.\" He smiles and motions for me to follow him out the door."
-            
-
 
             jump explore
         
@@ -247,12 +253,8 @@ label inprogress:
             
             scene bg pasture
 
-
-
             show noah sprite at center
             
-
-
             play music pasture
 
             play sound sheep_long 
@@ -263,13 +265,9 @@ label inprogress:
             
             m "Not for the first time, I’m struck by how picturesque it is out here. The sun is warm on my skin and a light breeze carries away most of the sheep smell."
             
-            # TODO
-            #Fade out noah sprite
             hide noah sprite
 
             stop sound fadeout 1.0
-
-            stop music fadeout 1.0
 
             
             m "As Noah moves towards the tree, I realize that the sounds around me have changed."
@@ -320,17 +318,16 @@ label inprogress:
             
             m "I find that I’m smiling without even thinking about it, wondering how the next location will look and sound."
 
+
             scene black
 
             $ renpy.pause()
-            # ASK
-            #Background: castle entryway
             
-            scene bgp
+            scene bg castlewall
             
-            play music castle_theme
+            play music castle_theme volume .8
 
-            show noah sprite at center
+            show noah sprite at centerleft
             
             m "The next place he takes me to is the castle entryway. I’m not exactly sure why someone would spend a large amount of time in the entryway, but Noah manages to answer my question before I even ask it."
             
@@ -355,7 +352,7 @@ label inprogress:
             n "\"The stained glass is beautiful, isn’t it? The scenes illustrate folklore and symbols of Phenai.\""
             
 
-            hide noah sprite with fade
+            hide noah sprite 
             
             # ASK
             # Which one is this?
@@ -376,32 +373,37 @@ label inprogress:
             m "Another window shows a glass representation of the townscape, castle in the distance included, a representation of what I saw from the cart when I first arrived."
             
             m "The center window is the one that captures my attention, though."
-            
-            m "It’s a more complex scene than the other windows, showing something that appears to be a long-bearded man holding a storybook in one hand and a staff in the other. I step a little closer to examine the image."
-            
 
-            #Background: center window zoom in
-            
+            m "It’s a more complex scene than the other windows, showing something that appears to be a long-bearded man holding a storybook in one hand and a staff in the other."
+
+            m "I step a little closer to examine the image."
+
+            camera:
+                ease 1 zpos -300
+
             play music lorenzo_theme
+
+            $ renpy.pause()
             
             m "I blink, stepping back from the window."
-            
-            # TODO
-            #Background: zoom out
-            # ???
-            
-            play music castle_theme
+
+            camera:
+                ease 1 zpos 0
+                      
+            play music castle_theme volume .8
+
+            $ renpy.pause()
             
             m "… Weird."
             
             m "I step closer to the window again."
             
-            # TODO
-            #Background: window zoom in
-            
-            # TODO
-            #Music: Lorenzo theme
+            camera:
+                ease 1 zpos -300
+
             play music lorenzo_theme
+
+            $ renpy.pause()
             
             m "Yep, the music definitely changed here. So… What makes this scene different than the others?"
             
@@ -418,6 +420,9 @@ label inprogress:
             m "That’s when it clicks and I recognize the illustration. Save for the storybook, it’s an image that is almost an exact representation of the Magician card in a tarot deck."
             
             m "\"Who is this?\" I ask Noah, still squinting at the image."
+
+            show noah sprite at centerright:
+                zpos +300
             
             n "\"No one is entirely sure. Some people say he’s the first historian in Phenai, keeping records of the kingdom and making sure it’s all passed down, but if you actually look at the early records…\" he winces."
             
@@ -433,18 +438,11 @@ label inprogress:
             
             n "\"What’s this…?\""
             
-            # ASK
-            #Sound: page flipping
-
-            
-            show noah sprite at right
-            
-            # TODO
             #Background: zoom back out from windows
             
             # TODO
             #Music: Phenai kingdom theme
-            play music castle_theme
+            play music castle_theme volume .8
             
             m "When I glance over, he’s reaching towards where a battered book is lying at the corner of the windowsill. I didn’t notice it before, too preoccupied with the window itself, but it appears to have been sitting there for a while."
 
@@ -468,16 +466,23 @@ label inprogress:
             
             # TODO
             #Sprite: Lorenzo MEGA CLOSE UP
-            
+            hide noah sprite
+
+            show lorenzo sprite:
+                xalign .5
+                yalign -.05
+                zoom 5
+
             u "\"Are you enjoying the castle tour?\""
-            
             
             play music lorenzo_theme
 
             m "I bite my lip to keep from screaming and almost drop the book as I look up at the huge, black bird beak in front of me. Instead, I clutch it close to my chest and take a step back, heaving a sigh of relief."
+
+            hide lorenzo sprite
             
-            show lorenzo sprite at center
-            show noah sprite at right
+            show lorenzo sprite at centerright
+            show noah sprite at centerleft
             
             m "\"Do you scare the snot out of everyone when you say hello, or is it just me?\" I grumble."
             
@@ -505,13 +510,14 @@ label inprogress:
             
             "Patcher" "\"I should hope so.\""
             
-            hide lorenzo sprite with fade
+            hide lorenzo sprite 
             
             play music noah_theme
             
             # ASK
             #Background: normal entryway
-            scene bgp
+            scene bg castlecurtains
+            show noah sprite at centerright
             
             m "At that, the Patcher turns on his heel and walks away, leaving Noah and I alone in the entryway. I turn to the prince to find him watching the beaked figure walking out of the room."
             
@@ -543,19 +549,11 @@ label inprogress:
             
             n "\"Yes… We should do that.\""
             
-            # TODO
-            # ASK
-            #Background: kitchen
-            scene bgp
-            
-            # TODO
-            #Music: kitchen
-            play music kitchen
-            
+            scene bg kitchen
+           
             m "I still feel uneasy as we leave the entryway and wander through the castle towards the kitchens, like there’s an itch I can’t scratch, but there’s not much I can do about it now. I should spend some time investigating that book from the entryway later, I decide, clutching it close to my chest."
             
-
-            show noah sprite at center
+            show noah sprite at centerleft
 
             n "\"I don’t intend to stop here for long, but we should both get a little food while we’re passing through,\" he says, turning into the kitchens."
             
@@ -569,12 +567,9 @@ label inprogress:
             
             n "\"Kylie?!\""
             
-            # TODO
-            #Music: Kylie theme
-            #play music kylie_theme
+            play music kylie_theme
 
-
-            show kylie sprite at right
+            show kylie sprite at centerright
             
             m "I whirl around to see the princess sitting on a stool in the corner, munching on a loaf of fresh bread by the fire."
             
@@ -599,7 +594,7 @@ label inprogress:
 
             play music kitchen
             
-            hide kylie sprite with fade
+            hide kylie sprite 
             
             m "As Kylie leaves, loaf of bread in hand, Noah turns to me, the tips of his ears turning red."
             
@@ -706,7 +701,7 @@ label inprogress:
             
                 # TODO
                 #Background: library 1
-                scene bgp
+                scene bg castlelib
                 
                 # TODO
                 # ASK
@@ -721,6 +716,7 @@ label inprogress:
                 
                 m "A knot of anxiety forms in my chest and settles there, constricting my throat and making my stomach roil."
                 
+                show fairy sprite at fairycenter
                 f "\"What’s wrong?\" She lands on my shoulder and perches there, her voice gentle rather than her usual demanding tone."
                 
                 m "\"What if I can’t do this in time?\" I whisper. \"What if I’m stuck here forever?\""
@@ -766,8 +762,10 @@ label inprogress:
 
                 menu:
                     "he is":
+                        $ affection [6] = -1
                         jump he_is
                     "he isn't":
+                        $ affection [6] = 1
                         jump he_isnt
                     "I don't know":
                         jump i_dont_know1
@@ -833,4 +831,5 @@ label inprogress:
                     scene black with fade
 
                     stop music
+                    stop sound 
                     jump chapter5

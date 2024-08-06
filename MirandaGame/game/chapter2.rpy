@@ -1,6 +1,7 @@
 
 label chapter2:
-
+    
+    stop music
 
     scene title cp2 with fade
 
@@ -11,7 +12,7 @@ label chapter2:
     play audio birds
 
     # What?
-    # Background: town scene?
+    scene bg town
 
     m "I am riding in the back of a cart clattering down a cobblestone street, jostling around with unidentified bags that seem like grain."
 
@@ -55,9 +56,7 @@ label chapter2:
     m "A shower of pink and gold sparkles erupts from the bag as a tiny figure zooms out of the opening. I blink in surprise, scrunching up my nose at what appears to be a tiny… fairy?"
     
     #Sprite: Fairy full body
-    show fairy sprite:
-        xalign  .5
-        yalign  .6
+    show fairy sprite at fairycenter
     
     f "\"About time you let me out of there! It’s so stuffy.\" She says, brushing what appears to be glitter off her tiny body as she shakes out her arms and legs."
     
@@ -70,9 +69,7 @@ label chapter2:
     # TODO
     # Sprite: fairy zoom in
 
-    show fairy sprite:
-        xalign  .5
-        yalign  .6
+    show fairy sprite at fairycenter:
         ease .8 zoom 3
     
     f "\"Oh. Oh, no, though you’re not the first one to think that,\" she says. \"You found the game, didn’t you?\""
@@ -164,9 +161,15 @@ label chapter2:
     # TODO
     # Background: town scene, zoom in on castle
     
+    hide fairy sprite
+
+    camera:
+        perspective True
+        linear 4.0 xpos 400 ypos -150 zpos -600
+
     "Driver" "\"Okay, this is our stop! Everyone out.\""
 
-    hide fairy sprite
+
     
     m "\"Thank you!\" I wave at the driver and do my best to gracefully jump down from the back of the cart, hoping that he isn’t expecting any money." 
 
@@ -178,7 +181,15 @@ label chapter2:
     
     u "\"Careful, there!\""
     
-    scene bg castleFullCurtains
+
+
+    scene bg castlecurtains
+
+    camera:
+        perspective True
+        xalign 0
+        yalign 0
+        zpos 0        
 
     play music leslie_theme
     
@@ -215,7 +226,7 @@ label chapter2:
 
     scene bg flipped hallway
 
-    show leslie sprite at center
+    show leslie sprite at centerright
     play music fantastical_day
     
     m "The door leads into a long hallway with several branching paths off either side, but it is significantly less crowded than outside." 
@@ -264,8 +275,8 @@ label chapter2:
     m "Wouldn’t a fantasy world have its own completely different language as well as a different culture? How are they even speaking an approximation of the kind of English that I know?"
     
     show fairy sprite behind leslie:
-        xalign  .45
-        yalign  .4
+        xalign  .6
+        yalign  .455
 
 
     f "\"It’s the game translating for you based on your language settings,\" the fairy says. \"Sorry, I can kind of hear your thoughts if you think too loud\""
@@ -293,7 +304,7 @@ label chapter2:
 
     play music tarran_theme
 
-    show tarran sprite at right
+    show tarran sprite at centerright
     
     m "A tall man in gunmetal-toned armor with gold accents stands in front of me." 
 
@@ -312,7 +323,7 @@ label chapter2:
 
     
     
-    show leslie sprite at center
+    show leslie sprite at centerleft
 
     play music fantastical_day
 
@@ -355,11 +366,14 @@ label chapter2:
     
     # TODO
     #Background: library 1
-    scene bgp
+    scene bg castlelib
+    play music library_ambient
     
     m "It’s a room full of books. It’s dark and dusty, of course, the only light filtering in through the large stained glass window with a decorative image of a fluffy sheep surrounded by roses."
 
     m "Other than the dust, though, it really doesn’t look too bad, and I say as much to Leslie."
+
+    show leslie sprite at centerright
     
     le "\"Oh, this is just the main library area. It’s a bit disused, but other than that it’s alright. The real problem is…\""
     
@@ -378,7 +392,6 @@ label chapter2:
     
     m "Leslie carefully begins to dig through the pile, removing boxes until she’s able to grab my hand and pull me upright."
     
-    
     le "\"I know it’s been quite a while since I’ve walked into the archive, but I didn’t think it had gotten that bad!\" She shudders slightly, looking between me, the pile, and the open door in abject horror."
     
     m "\"It’s okay, I’m not hurt.\" Only my pride, that is. I brush some dust off with a shrug and surreptitiously rub my rear."
@@ -396,6 +409,8 @@ label chapter2:
     m "I look up before I have time to process the documents. \"Oh, I’m okay! No worries.\""
     
     le "\"As long as you’re certain. I’ll be back in a moment.\""
+
+    hide leslie sprite
     
     m "Leslie shuffles out the door and I turn back to the documents in the box. I squint at the lines, frowning. I can read cursive just fine, but whatever language this is, it’s not English."
     
@@ -403,9 +418,7 @@ label chapter2:
     
     # TODO
     #Sprite: Fairy full body
-    show fairy sprite:
-        xalign  .5
-        yalign  .6
+    show fairy sprite at fairycenter
     
     f "\"Hmm?\" She pops up in a shower of sparkles, seemingly out of nowhere. \"What do you mean they’re not working?\""
     
@@ -415,7 +428,9 @@ label chapter2:
     
     m "I bite back a scream at the unexpected masculine voice that echoes around the room, whirling towards the library door. Then I bite back another scream at the figure who stands near the door, simply watching."
 
-    show lorenzo sprite at center
+    hide fairy sprite
+
+    show lorenzo sprite at centerright
     
     play music lorenzo_theme
     
@@ -432,7 +447,9 @@ label chapter2:
     
     m "I raise my eyebrow, gaze suddenly locked on the dark glass in the eye holes of the bird mask. \"Games?\""
     
-    u "He laughs softly. \"No need to play more games with me. We both already know you’re in a very high-stakes one right now.\""
+    "Patcher" "He laughs softly. \"No need to play more games with me. We both already know you’re in a very high-stakes one right now.\""
+
+    show fairy sprite at fairycenterleft
     
     f "\"I don’t like this…\""
     
@@ -466,8 +483,6 @@ label chapter2:
     
     m "I huff and sit down on a nearby stood, resting my head in my hands. \"Thanks. I think.\""
     
-
-
     "Patcher" "\"You are quite welcome.\" He turns, footsteps retreating towards the library doors."
     
     "Patcher" "\"I will say, though: if I were you, I wouldn’t delay.\""
@@ -483,6 +498,8 @@ label chapter2:
     
     scene black with fade
 
+    scene bg castlelib
+
     # ASK
     #SCENE SHIFT, fade to black 
     
@@ -491,9 +508,7 @@ label chapter2:
 
     play music mc_theme
     
-    show fairy sprite:
-        xalign  .5
-        yalign  .6
+    show fairy sprite at fairycenter
     
     f "\"Well, at least we have all the boxes cleared now.\""
     
@@ -631,19 +646,20 @@ label chapter2:
 
     scene black with fade
 
+    scene bg pasture
+
     m "We find Tarran outside, looking out over a wide meadow inhabited by overlarge, fluffy clouds."
     
     m "Nope. Wait. Those are sheep."
     
-    scene bg pasture
+
 
 
     show tarran sprite at center
-    
 
     play music tarran_theme
     
-    play sound sheep_long volume .8
+    play sound sheep_long volume .1 fadeout 3.0
     
     m "I stumble slightly as I notice the sounds around me. It’s not just the sheep, it’s something I had tuned out altogether before simply because I wasn’t paying proper attention."
     
@@ -806,6 +822,7 @@ label chapter2:
         "I’d like to help":
             # +1 affection
             $ affection[1] = 1
+
             jump choice2_good
 
 
@@ -881,7 +898,8 @@ label chapter2:
         
         play music noah_theme
 
-        show noah sprite at right
+        show tarran sprite at centerleft
+        show noah sprite at centerright
 
         m "His long brown hair is so dark that it’s almost black. There is a naturally golden-blonde streak on one side, the light color peeking and out of a braid thrown over his shoulder."
 
@@ -895,15 +913,8 @@ label chapter2:
         
         m "… Not that I would know the etiquette for that in my own world, but that’s beside the point."
         
-        t "\"This is [player_name], the new castle librarian. [player_name], meet Prince Noah.\""
-        
-        scene bg pasture
-
-
-        #Sprites: Tarran and Noah 
-
-        show tarran sprite at center
-        
+        t "\"This is [player_name], the new castle librarian. [player_name], meet Prince Noah.\""     
+      
         m "\"It’s nice to meet you, Your Majesty,\" I say as calmly as I can, forcing a nervous smile that probably looks as awkward as it feels. The prince waves his hand in protest."
         
         n "\"Please, just call me Noah. At least… while no one else is around, it is certainly fine with me if you do.\" He smiles softly, as if trying to soothe any stray nerves."
@@ -919,4 +930,6 @@ label chapter2:
         scene black with fade
 
         stop sound
+        stop music
+
         jump chapter3

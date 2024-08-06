@@ -15,9 +15,7 @@ label chapter5:
     # TODO
     # ASK
     #Background: library
-
-
-    scene bgp
+    scene bg castlelib
 
     play music library_ambient
     
@@ -28,9 +26,7 @@ label chapter5:
     m "The Fairy, who has been flitting around to help me organize a little, flies over to sit on my shoulder, staring down at the page."
 
 
-    show fairy sprite:
-        xalign  .5
-        yalign  .6
+    show fairy sprite at fairycenter
     
     f "\"Where did you find that?\" she asks, tiny head tilting to the side."
     
@@ -74,8 +70,10 @@ label chapter5:
     
     # TODO
     #Music: kylie theme
-    #play music kylie_theme
-    
+
+    hide fairy sprite
+
+    play music kylie_theme
     
 
     show kylie sprite at center
@@ -104,7 +102,9 @@ label chapter5:
     
     m "The urge to immediately start scanning pages is strong, but instead I turn back to Kylie."
     
-    m "\"How did you know that would work?\" Thinking back, it makes sense, as I know Renaissance magicians and alchemists like John Dee did consider the number seven to be perfect and divine, and we found this book in the Magician’s window, but… I wouldn’t have pulled it off the top of my head as quickly as Kylie."
+    m "\"How did you know that would work?\" Thinking back, it makes sense, as I know Renaissance magicians and alchemists like John Dee did consider the number seven to be perfect and divine."
+
+    m "We found this book in the Magician’s window, but… I wouldn’t have pulled it off the top of my head as quickly as Kylie."
     
     k "\"I’m a wizard,\" she says, pulling up a chair \"I know a thing or two about magic.\""
     
@@ -134,7 +134,7 @@ label chapter5:
 
     m "The mysterious bird man with the sash…"
 
-    m "A book in code…"
+    m "A book in code…" 
 
     m "Everything seems just out of the way enough that it might be something to chase, but there is always the risk that it will push me off schedule just enough to ruin my way home forever."
     
@@ -146,11 +146,6 @@ label chapter5:
     
     play music lorenzo_theme
     
-    # ASK
-    # Storybook CG?
-    #Background: book pages
-    scene bgp
-    
     m "Originally, I’d assumed it was some kind of handwritten historical text, but in reality, it appears to be more of a diary."
 
     m "The author is only listed as The Magician, no actual name provided anywhere at all, and the portion of the text loosely describes the need to ‘travel away’ to escape something that isn’t specified."
@@ -160,8 +155,6 @@ label chapter5:
     m "The first entry is dated as August of 1472, but the date system quickly shifts into something much simpler."
     
     m "\"Day one?\" I mutter, narrowing my eyes at an entry a few pages in."
-
-    show kylie sprite at center
     
     k "\"What does it say?\" She leans in, but after only the briefest glance, she looks up again."
     
@@ -207,6 +200,7 @@ label chapter5:
     menu:
         "Go on":
             # +1 affection
+            $ affection[7] = 1
             jump chapter5_encounter
         "Anything might help":
             # no change
@@ -214,6 +208,7 @@ label chapter5:
             jump chapter5_encounter
         "Go back to reading":
             # -1 affection
+            $ affection[7] = -1
             jump go_back_to_reading
 
     
@@ -255,8 +250,9 @@ label chapter5:
 
             u "\"Well, I must say, this place is an utter mess—\""
 
+            show kylie sprite at centerleft
 
-            show lorenzo sprite at right
+            show lorenzo sprite at centerright
 
             m "I spin around in my chair to see the Patcher in all his bird masked glory, standing stock still at the door to the library. Kylie stares back at him, her face slowly contorting into an expression that can only be described as pure rage."
             
@@ -267,20 +263,18 @@ label chapter5:
             m "And then the man in the bird mask does something I would have never expected."
             
             m "He turns tail and runs."
-            
 
+            scene bg castle hallway
 
-            hide lorenzo sprite with fade
-            hide kylie sprite with fade
+            hide lorenzo sprite 
+            hide kylie 
             
             m "Kylie is off like a shot before I even have time to react, chasing after him right on his heels, screeching something unintelligible as she takes off down the hallway."
             
             m "It takes a moment for me to recover, but when I do, I scramble to my feet so quickly that the chair falls over behind me and chase after them, the Fairy right behind me."
             
 
-            show fairy sprite:
-                xalign  .5
-                yalign  .6
+            show fairy sprite at fairycenter
             
             f "\"What is she doing?\""
             
@@ -288,7 +282,7 @@ label chapter5:
             
             hide fairy sprite
 
-            show lorenzo sprite at right
+            show lorenzo sprite at centerright
             show kylie sprite at center
             
             m "Kylie stands at a dead end in the hallway, having backed the man in the mask into a literal corner. She cautiously steps forward, reaching out towards him as I finally catch up to them, moving to stand beside her."
@@ -302,6 +296,7 @@ label chapter5:
             menu:
 
                 "push kylie out of the way":
+                    $ affection [8] = 2
                     jump push_kylie
                     # +2 affection
                 "dodge":
@@ -311,24 +306,11 @@ label chapter5:
                     jump bad_end_1
                     # bad end 1
 
-            #push kylie out of the way (+2 affection);
-            # dodge (no change);
-            # watch what happens (trigger bad end 1)]
-            
-            # TODO
-            #WATCH WHAT HAPPENS – BAD END 1
-
             label bad_end_1:
             
-                # TODO
-                #Music: bad end 
                 play music bad_end
-                
-                # TODO
-                #Screen: flash red overlay in and out
-                
-                # TODO
-                #Sprite: fade out all
+
+                scene bg castle hallway with blood
                 
                 m "I stand there frozen in shock, wondering what I should do for just a second too long, thinking he’s aiming for Kylie and wondering if it’s worth the risk to save her."
                 
@@ -342,7 +324,6 @@ label chapter5:
                 
                 m "Bright red blood stains my hands and hers as a beaked face looms over us."
                 
-
                 show lorenzo sprite at center
                 
                 "Patcher" "\" I was going to let you live, but you just had to meddle, didn’t you?\""
@@ -356,28 +337,19 @@ label chapter5:
                 m "He puts a black gloved hand over the wound in my stomach, coating it in blood, and I see him raise his hand… snap his fingers…"
                 
                 m "And that is the last thing I ever see."
-                
-                # TODO
-                # Background: fade to "THE END"
-                # need to make another jump for endings
+
+                jump the_end
 
 
             label push_kylie:
             
-            
                 m "I don’t have time to think as I lunge towards Kylie, knocking us both to the floor but out of the way of the blade swinging towards our necks."
-            
 
-            #SKIP TO ENCOUNTER REDIRECT>>>
                 jump chapter5_encounter2
-            
-
 
             label dodge:
             
                 m "I flail and careen to the side, losing my balance but diving out of the way of the knife."
-
-                jump chapter5_encounter2
             
             label chapter5_encounter2:
             
@@ -387,7 +359,9 @@ label chapter5:
                 
                 m "I don’t think, I just listen to instructions. Still on the floor, I grab for one of the Patcher’s ankles and swipe him off balance by pulling out one of his legs from under him."
 
-                n "Though his mask stays firmly tied to his face, his wide-brimmed hat flies off his head and his body thuds to the floor like a sack."
+                m "Both his mask and wide-brimmed hat fly off his head as his body thuds to the floor like a sack."
+
+                scene cg unmasked 
                 
                 m "Somewhere in the back of my mind, I register a strange, sickening, wet noise, but I’m too focused on surviving to investigate at the moment."
                 
@@ -398,9 +372,6 @@ label chapter5:
                 m "The knife that the Patcher just attempted to stab us with is now hilt-deep in his stomach."
                 
                 m "He must have fallen on it when he lost his balance. Unlikely in practice, but in a fairy tale like we are now… I suppose if not making sense, it’s at least more plausible."
-
-
-                show kylie sprite at center
                 
                 k "\"I knew it. You’re the one that created this whole… situation,\" she says distastefully as she struggles to her feet. She looks a little green and gasps at the sight of the knife."
                 
@@ -423,6 +394,11 @@ label chapter5:
                 m "\"Oh, god,\" I whisper. \"They’re not NPCs.\""
                 
                 m "I turn to Kylie with unveiled abject horror splashed across my face."
+
+                scene bg castle hallway
+                show kylie sprite at centerleft
+
+                show lorenzo sprite at centerright
                 
                 m "\"Kylie…\" I whisper. \"Your memories.\""
                 
@@ -444,7 +420,9 @@ label chapter5:
                 
                 m "The sheer look of horror on Kylie’s face is something that I hope to never see again in my life."
                 
-                m "Sheer rage flares to life somewhere deep in my gut. I start to shake as well, but it isn’t with fear. As though I can shield Kylie from the masked man, I step in front of her and stalk closer to where he leans against the wall."
+                m "Sheer rage flares to life somewhere deep in my gut. I start to shake as well, but it isn’t with fear."
+
+                m " As though I can shield Kylie from the masked man, I step in front of her and stalk closer to where he leans against the wall."
                 
                 m "\"You’re going to tell me who you are, and you’re going to tell me NOW,\" I say through gritted teeth."
                 
@@ -454,11 +432,13 @@ label chapter5:
                 
                 m "\"Wrong.\""
                 
-                m "In one movement, I grab the dagger from Kylie’s loose grip and surge forward, holding the blade to Lorenzo’s throat."
+                m "In one movement, I grab the dagger from Kylie’s loose grip and surge forward, holding the blade to the now unmasked bird man's throat."
                 
                 m "\"I think you’re done when I say you’re done.\""
                 
-                m "The reins on my nerves have officially snapped. As far as I’m concerned, we’re now in a life-or-death situation. This man knows something, it’s key to our survival, and now I’m even more determined to get that information out of him."
+                m "The reins on my nerves have officially snapped. As far as I’m concerned, we’re now in a life-or-death situation."
+
+                m "This man knows something, it’s key to our survival, and now I’m even more determined to get that information out of him."
                 
                 "Patcher" "\" What exactly do you plan to do?\" He tries to laugh, but it turns into a cough. \"In case you haven’t noticed, I’m bleeding out already.\""
                 
@@ -474,7 +454,9 @@ label chapter5:
                 
                 m "\"Then why don’t you start talking and convince me why I shouldn’t move this dagger.\""
                 
-                m "At first, I think it’s not going to work. Maybe he’ll just keep denying me and die and we’ll never get out of here, but as I press the dagger in closer to his neck, I feel a shudder run through him, and a realization hits me."
+                m "At first, I think it’s not going to work. Maybe he’ll just keep denying me and die and we’ll never get out of here, but as I press the dagger in closer to his neck, I feel a shudder run through him."
+
+                m "A realization hits me."
                 
                 m "He’s afraid."
                 
@@ -490,10 +472,6 @@ label chapter5:
                 
                 m "He looks like he wants to argue, but eventually he huffs, reaching up to rip off his bird mask with one hand."
                 
-                # TODO
-                #Cg: no mask
-                
-
                 play music lorenzo_theme
                 
                 m "The face under the mask isn’t… Well, I’d say it isn’t what I expected, but I don’t really know what I expected at all."
@@ -605,23 +583,24 @@ label chapter5:
                 menu:
                     "I'm not giving up!":
                         # +2 affection
+                        $ affection[9] = 2
                         jump not_giving_up
                     "I don’t really know":
                         # no change
                         jump i_dont_know
                     "Maybe it’s hopeless after all":
+                        $ affection[9] = -2
                         # -2 affection
                         jump hopeless
 
                 # TODO
                 # FADE?                
                 label not_giving_up:
-                    hide lorenzo sprite
-
                     show fairy sprite:
                         xalign  1
                         yalign  .6
-                    show kylie sprite at center
+                    show kylie sprite at centerleft
+                    show lorenzo sprite at centerright
 
                     play music mc_theme
                     
@@ -639,7 +618,7 @@ label chapter5:
                 label i_dont_know:
                     hide lorenzo sprite
 
-                    show fairy sprite at right
+                    show fairy sprite at fairyright
                     show kylie sprite at center
                 
                     play music mc_theme
@@ -658,8 +637,8 @@ label chapter5:
                 label hopeless:                
                     hide lorenzo sprite
 
-                    show fairy sprite at right
-                    show kylie sprite at center
+                    show fairy sprite at fairycenterright
+                    show kylie sprite at centerleft
                 
                     play music mc_theme
                 
@@ -727,11 +706,8 @@ label chapter5:
                         
                         m "But I’m no longer listening to her."
                         
-                        # TODO
-                        #Fade out fairy and kylie sprites
-
-                        hide fairy sprite with fade
-                        hide kylie sprite with fade
+                        hide fairy sprite
+                        hide kylie sprite
                         
                         lo "\"Simple. As I said, the memories of your world, of your childhood and life before this, are much more potent than memories made here, and you are the only person with access to them. Besides myself, of course,\" he amends quickly."
                         
@@ -788,7 +764,6 @@ label chapter5:
 
                         scene bg flipped hallway
 
-                        scene bgp                    
                         show lorenzo sprite at center
                         
                         m "The only problem is that I don’t remember how I got here. Where am I?"
@@ -808,7 +783,9 @@ label chapter5:
                         m "No matter what, I know in my heart that it isn’t worth it to back down. I want to go home, and I’m going to fight for that. Not just for me, but for everyone else that clearly has been trapped here, too."
                         
                         m "I hit Lorenzo over the head with his own staff in response."
-                        
+
+                        hide lorenzo sprite
+                         
                         m "\"Yeah, cluck you,\" I spit at his unconscious form. \"I’ll take my chances on door number three.\""
                         
                         m "Kylie gives a low whistle as she looks over Lorenzo’s unconscious body, eyebrows raised."
@@ -823,5 +800,9 @@ label chapter5:
                         
 
                         scene black with fade
+
+
+                        stop sound
+                        stop music
 
                         jump chapter6
